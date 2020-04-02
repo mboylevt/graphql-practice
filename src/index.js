@@ -7,11 +7,11 @@ import * as serviceWorker from './serviceWorker'
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
-import { InMemoryCache } from 'apollo-cache-inmemory' 
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { BrowserRouter } from 'react-router-dom'
 
 const httpLink = createHttpLink({
-	uri: 'http://192.168.1.229:4000'
-	// uri: 'http://localhost:4000'
+	uri: 'http://localhost:4000'
 })
 
 const client = new ApolloClient({
@@ -21,12 +21,14 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+		<BrowserRouter>
+	  	<ApolloProvider client={client}>
+	    	<App />
+	  	</ApolloProvider>,
+		</BrowserRouter>,
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
